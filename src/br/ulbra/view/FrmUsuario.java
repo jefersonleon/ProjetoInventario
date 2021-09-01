@@ -42,6 +42,7 @@ public class FrmUsuario extends javax.swing.JFrame {
         SEXO = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -58,6 +59,16 @@ public class FrmUsuario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtSenha1 = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,33 +88,40 @@ public class FrmUsuario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel1.setText("CADASTRO USUARIO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 11, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("NOME");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 410, 34));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 410, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("SENHA");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 145, 34));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 145, 30));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("E-MAIL");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 222, 36));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 410, 30));
 
+        btnSalvar.setBackground(new java.awt.Color(102, 255, 0));
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvarp.png"))); // NOI18N
         btnSalvar.setText("SALVAR");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 110, 44));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 110, 44));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("CELULAR");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
-        getContentPane().add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 121, 34));
-        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 50, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        getContentPane().add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 290, 30));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, 30));
 
+        tabelaUsuario.setBackground(new java.awt.Color(255, 153, 153));
         tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -119,26 +137,92 @@ public class FrmUsuario extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tabelaUsuario);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 590, 80));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 590, 70));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("ID");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
+        btExcluir.setBackground(new java.awt.Color(255, 0, 51));
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluir.png"))); // NOI18N
         btExcluir.setText("EXCLUIR");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
             }
         });
-        getContentPane().add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 110, 40));
+        getContentPane().add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 110, 44));
 
+        btEditar.setBackground(new java.awt.Color(255, 153, 0));
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editarp.png"))); // NOI18N
         btEditar.setText("EDITAR");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 110, 40));
+        getContentPane().add(btEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 110, 44));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("REPETIR A SENHA");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, -1, -1));
+        getContentPane().add(txtSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 145, 30));
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        jRadioButton1.setBackground(new java.awt.Color(255, 153, 153));
+        jRadioButton1.setText("A-Z");
+
+        jRadioButton2.setBackground(new java.awt.Color(255, 153, 153));
+        jRadioButton2.setText("Z-A");
+
+        jRadioButton3.setBackground(new java.awt.Color(255, 153, 153));
+        jRadioButton3.setText("Por nome");
+
+        jRadioButton4.setBackground(new java.awt.Color(255, 153, 153));
+        jRadioButton4.setText("Por E-mail");
+
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(27, 27, 27))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 620, 70));
+
+        jPanel2.setBackground(new java.awt.Color(255, 153, 153));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,14 +243,23 @@ public class FrmUsuario extends javax.swing.JFrame {
     }
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         UsuarioDAO dao = null;
+        boolean ok = false;
+        String senha1, senha2 = null;
         try {
             dao = new UsuarioDAO();
             Usuario u = new Usuario();
             u.setNome(txtNome.getText());
             u.setCelular(txtCelular.getText());
-            u.setSenha(txtSenha.getText());
-            u.setEmail(txtEmail.getText());
-            dao.create(u);
+            senha1 = txtSenha.getText();
+            senha2 = txtSenha1.getText();
+            if (senha1.equals(senha2)) {
+                u.setSenha(senha1);
+                ok = true;
+                u.setEmail(txtEmail.getText());
+                dao.create(u);
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha não confere!!! verifique a sua senha");
+            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -184,8 +277,7 @@ public class FrmUsuario extends javax.swing.JFrame {
 
             txtId.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0).toString());
             txtNome.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 1).toString());
-            
-           
+
             txtCelular.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 4).toString());
             txtEmail.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 5).toString());
 
@@ -214,7 +306,6 @@ public class FrmUsuario extends javax.swing.JFrame {
             txtSenha.setText("");
             txtCelular.setText("");
 
-
             try {
                 readJTable();
             } catch (SQLException ex) {
@@ -228,36 +319,35 @@ public class FrmUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-       if (tabelaUsuario.getSelectedRow() != -1) {
+        if (tabelaUsuario.getSelectedRow() != -1) {
 
             Usuario u = new Usuario();
             UsuarioDAO dao = null;
-           try {
-               dao = new UsuarioDAO();
-           } catch (SQLException ex) {
-               Logger.getLogger(FrmUsuario.class.getName()).log(Level.SEVERE, null, ex);
-           }
+            try {
+                dao = new UsuarioDAO();
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             u.setNome(txtNome.getText());
-         
+
             u.setCelular(txtCelular.getText());
             u.setEmail(txtEmail.getText());
             u.setId((int) tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 0));
             dao.update(u);
 
-           txtId.setText("");
+            txtId.setText("");
             txtNome.setText("");
             txtEmail.setText("");
             txtSenha.setText("");
-      
-            txtCelular.setText("");
-        
 
-           try {
-               readJTable();
-           } catch (SQLException ex) {
-               Logger.getLogger(FrmUsuario.class.getName()).log(Level.SEVERE, null, ex);
-           }
+            txtCelular.setText("");
+
+            try {
+                readJTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
@@ -307,20 +397,31 @@ public class FrmUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabelaUsuario;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JPasswordField txtSenha1;
     // End of variables declaration//GEN-END:variables
 }

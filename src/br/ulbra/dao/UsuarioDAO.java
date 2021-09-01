@@ -133,17 +133,32 @@ public class UsuarioDAO {
     }
 
 //PESQUISA PELO LOGIN
-    public List<Usuario> readForDesc(String desc) {
+    public List<Usuario> readForDesc(String desc, int opcao) {
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
+        String sql = null; int tipo = 0;
+        if(opcao == 1){
+            sql = "SELECT * FROM tbusuario ORDER BY nome ASC";
+        }else if(opcao == 2){
+             sql = "SELECT * FROM tbusuario ORDER BY nome DESC";
+        }else if(opcao == 3){
+           sql = "SELECT * FROM tbusuario WHERE nome LIKE ?";
+           tipo=1;
+        }else{
+              sql = "SELECT * FROM tbusuario WHERE email LIKE ?";
+              tipo = 2;
+        }
+        
+        
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM tbusuario WHERE nome LIKE ?");
-            stmt.setString(1, "%" + desc + "%");
-
+            stmt = con.prepareStatement(sql);
+          
+            if (tipo==1 || tipo ==2){
+                stmt.setString(1, "%" + desc + "%");                
+            }
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -151,8 +166,9 @@ public class UsuarioDAO {
                 Usuario usuario = new Usuario();
 
                 usuario.setId(rs.getInt("idusuario"));
+                usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
-
+                usuario.setCelular(rs.getString("fone"));
                 usuarios.add(usuario);
             }
 
@@ -161,9 +177,7 @@ public class UsuarioDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
-
         return usuarios;
-
     }
 
     public boolean checkLogin(String email, String senha) {
