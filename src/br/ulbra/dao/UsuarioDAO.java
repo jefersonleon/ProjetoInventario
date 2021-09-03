@@ -59,7 +59,7 @@ public class UsuarioDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE FROM tbusuario WHERE idusuario = ?");
+            stmt = con.prepareStatement("DELETE FROM tbusuario WHERE pkidusuario = ?");
             stmt.setInt(1, u.getId());
             stmt.executeUpdate();
 
@@ -78,13 +78,13 @@ public class UsuarioDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE tbusuario SET nome = ?, fone = ?, email = ? WHERE idusuario = ?");
+            stmt = con.prepareStatement("UPDATE tbusuario SET nome = ?, fone = ?, email = ? WHERE pkidusuario = ?");
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getCelular());
             stmt.setString(3, u.getEmail());
           
 
-            stmt.setInt(6, u.getId());
+            stmt.setInt(4, u.getId());
 
             stmt.executeUpdate();
 
@@ -114,7 +114,7 @@ public class UsuarioDAO {
 
                 Usuario usuario = new Usuario();
 
-                usuario.setId(rs.getInt("idusuario"));
+                usuario.setId(rs.getInt("pkidusuario"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setCelular(rs.getString("fone"));
                 usuario.setEmail(rs.getString("email"));
@@ -165,7 +165,7 @@ public class UsuarioDAO {
 
                 Usuario usuario = new Usuario();
 
-                usuario.setId(rs.getInt("idusuario"));
+                usuario.setId(rs.getInt("pkidusuario"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setCelular(rs.getString("fone"));
