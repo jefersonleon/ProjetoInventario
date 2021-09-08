@@ -31,7 +31,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" + "idPkCat=" + idPkCat + ", categoria=" + categoria + '}';
+        return  this.getCategoria();
     }
 
    
