@@ -87,7 +87,7 @@ public class FrmHardware extends javax.swing.JFrame {
         txtPreco = new javax.swing.JTextField();
         cbxCat = new javax.swing.JComboBox();
         cbxMarca = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        valorRender1 = new br.ulbra.util.ValorRender();
         jLabel9 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,7 +111,7 @@ public class FrmHardware extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel1.setText("CADASTRO HARDWARE");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         btEditar.setBackground(new java.awt.Color(255, 153, 0));
         btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editarp.png"))); // NOI18N
@@ -121,7 +121,7 @@ public class FrmHardware extends javax.swing.JFrame {
                 btEditarActionPerformed(evt);
             }
         });
-        jPanel2.add(btEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 110, 44));
+        jPanel2.add(btEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 110, 44));
 
         btExcluir.setBackground(new java.awt.Color(255, 0, 51));
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluir.png"))); // NOI18N
@@ -131,7 +131,7 @@ public class FrmHardware extends javax.swing.JFrame {
                 btExcluirActionPerformed(evt);
             }
         });
-        jPanel2.add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 110, 44));
+        jPanel2.add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, 110, 44));
 
         btnSalvar.setBackground(new java.awt.Color(102, 255, 0));
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvarp.png"))); // NOI18N
@@ -141,7 +141,7 @@ public class FrmHardware extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 110, 44));
+        jPanel2.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 110, 44));
 
         tabelaHardware.setBackground(new java.awt.Color(255, 153, 153));
         tabelaHardware.setModel(new javax.swing.table.DefaultTableModel(
@@ -149,17 +149,37 @@ public class FrmHardware extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "DESCRIÇÃO", "MODELO", "ESTADO", "DATA", "PREÇO", "CATEGORIA", "MARCA", "CARACTERISTICAS"
+                "ID", "DESCRIÇÃO", "MODELO", "ESTADO", "DATA", "PREÇO", "CARACTERISTICAS", "CATEGORIA", "MARCA"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabelaHardware.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaHardwareMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(tabelaHardware);
+        if (tabelaHardware.getColumnModel().getColumnCount() > 0) {
+            tabelaHardware.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tabelaHardware.getColumnModel().getColumn(1).setPreferredWidth(220);
+            tabelaHardware.getColumnModel().getColumn(5).setCellRenderer(valorRender1);
+        }
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 540, 70));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 860, 100));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -213,48 +233,48 @@ public class FrmHardware extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 550, 70));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 550, 70));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("MARCA");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 120, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("ESTADO");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("CATEGORIA");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("MODELO");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, -1, -1));
 
         txtModelo.setText("a");
-        jPanel2.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 170, 30));
+        jPanel2.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 170, 30));
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Novo", "Usado", "Com defeito", "Sucata" }));
-        jPanel2.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 150, 30));
+        jPanel2.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 150, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("DATA");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("CARACTERISTICAS");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("PREÇO R$");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
 
         txtCaracteristica.setColumns(20);
         txtCaracteristica.setRows(5);
         txtCaracteristica.setText("a");
         jScrollPane2.setViewportView(txtCaracteristica);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 510, 60));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 770, 60));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("ID");
@@ -266,13 +286,13 @@ public class FrmHardware extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
         txtNome.setText("a");
-        jPanel2.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 430, 30));
+        jPanel2.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 510, 30));
 
         txtData.setText("2000-01-01");
-        jPanel2.add(txtData, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 140, 30));
+        jPanel2.add(txtData, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 140, 30));
 
         txtPreco.setText("1000");
-        jPanel2.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 140, 30));
+        jPanel2.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 140, 30));
 
         cbxCat.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -283,7 +303,7 @@ public class FrmHardware extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jPanel2.add(cbxCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 180, 30));
+        jPanel2.add(cbxCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 180, 30));
 
         cbxMarca.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -294,12 +314,12 @@ public class FrmHardware extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jPanel2.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 170, 30));
+        jPanel2.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 120, 30));
 
-        jButton2.setText("...");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 30, -1));
+        valorRender1.setText("valorRender1");
+        jPanel2.add(valorRender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 550));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 550));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("ESTADO");
@@ -319,10 +339,12 @@ public class FrmHardware extends javax.swing.JFrame {
                 h.getNome(),
                 h.getModelo(),
                 h.getEstado(),
-                h.getData(),
+                h.getData(), 
+                h.getPreco(), 
                 h.getCarateristica(),
                 h.getCategoria(),
                 h.getMarca()
+                
             });
         }
     }
@@ -514,7 +536,6 @@ public class FrmHardware extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JComboBox cbxMarca;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -544,5 +565,6 @@ public class FrmHardware extends javax.swing.JFrame {
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
+    private br.ulbra.util.ValorRender valorRender1;
     // End of variables declaration//GEN-END:variables
 }

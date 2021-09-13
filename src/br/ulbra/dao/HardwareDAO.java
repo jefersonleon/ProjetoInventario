@@ -183,23 +183,28 @@ public class HardwareDAO {
         List<Hardware> hs = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement("SELECT h.pkidhard, h.nome, h.modelo, h.estado, h.data, h.preco, h.caracteristica, c.categoria, m.marca FROM tbhardware as h join tbcategoria as c on (h.fkidCategoria=c.pkidcategoria) join tbmarca as m on (h.fkidmarca = m.pkidmarca)");
+            stmt = con.prepareStatement("SELECT h.pkidhard, h.nome, h.modelo, h.estado, h.data,h.preco,"
+                    + " h.caracteristica, c.categoria, m.marca FROM tbhardware as h "
+                    + "join tbcategoria as c on (h.fkidCategoria=c.pkidcategoria) "
+                    + "join tbmarca as m on (h.fkidmarca = m.pkidmarca)");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
 
                 Hardware hard = new Hardware();
-
+                Categoria c = new Categoria();
+                c.setCategoria(rs.getString("categoria"));
+                Marca m = new Marca();
+                m.setMarca(rs.getString("marca"));
                 hard.setIdHard(rs.getInt("pkidhard"));
                 hard.setNome(rs.getString("nome"));
                 hard.setModelo(rs.getString("modelo"));
                 hard.setEstado(rs.getString("estado"));
                 hard.setData(rs.getString("data"));
                 hard.setPreco(rs.getDouble("preco"));
+                hard.setCategoria(c);
+                hard.setMarca(m);
                 hard.setCarateristica(rs.getString("caracteristica"));
-                hard.setCategoria((Categoria) rs.getObject("categoria"));
-                hard.setMarca((Marca)rs.getObject("marca"));
-
                 hs.add(hard);
             }
 
