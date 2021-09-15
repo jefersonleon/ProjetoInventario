@@ -86,16 +86,17 @@ public class HardwareDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE tbhardware SET nome=?,modelo=?, estado=?, data=?, preco=?, caracteristica=?,fkidcategoria=?,fkidmarca=? WHERE pkidhard = ?");
+            stmt = con.prepareStatement("UPDATE tbhardware SET nome=?, modelo=?, estado=?, data=?, preco=?, caracteristica=?, fkidcategoria=?, fkidmarca=? WHERE pkidhard = ?");
             stmt.setString(1, h.getNome());
             stmt.setString(2, h.getModelo());
             stmt.setString(3, h.getEstado());
             stmt.setString(4, h.getData());
             stmt.setDouble(5, h.getPreco());
             stmt.setString(6, h.getCarateristica());
+
+     
             stmt.setInt(7, h.getCategoria().getIdPkCat());
             stmt.setInt(8, h.getMarca().getIdPkMarca());
-
             stmt.setInt(9, h.getIdHard());
 
             stmt.executeUpdate();
@@ -266,33 +267,4 @@ public class HardwareDAO {
         return usuarios;
     }
 
-    public boolean checkLogin(String email, String senha) {
-
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        boolean check = false;
-
-        try {
-
-            stmt = con.prepareStatement("SELECT * FROM tbusuario WHERE email = ? and senha = ?");
-            stmt.setString(1, email);
-            stmt.setString(2, senha);
-
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-
-                check = true;
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(HardwareDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
-        }
-
-        return check;
-
-    }
 }

@@ -33,12 +33,26 @@ public class FrmHardware extends javax.swing.JFrame {
         initComponents();
 
         this.setLocationRelativeTo(null);//centraliza o formulario no centro da tela
+        // controlarBotoes(1);
         readJTable();
-       /* HardwareDAO dao = new HardwareDAO();
+        preencherComboMarca();
+        preencherComboCat();
+        /* HardwareDAO dao = new HardwareDAO();
         cbxCat.removeAll();
 
         List<Categoria> listaC = dao.listaCategoria();*/
 
+    }
+
+    private void limpar() {
+        txtId.setText("");
+        txtDesc.setText("");
+        txtModelo.setText("");
+        txtData.setText("");
+        txtPreco.setText("");
+        cbxCat.setSelectedIndex(0);
+        cbxMarca.setSelectedIndex(0);
+        txtCaracteristica.setText("");
     }
 
     /**
@@ -82,12 +96,12 @@ public class FrmHardware extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtDesc = new javax.swing.JTextField();
         txtData = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
+        btNovo = new javax.swing.JButton();
         cbxCat = new javax.swing.JComboBox();
         cbxMarca = new javax.swing.JComboBox();
-        valorRender1 = new br.ulbra.util.ValorRender();
         jLabel9 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,7 +135,7 @@ public class FrmHardware extends javax.swing.JFrame {
                 btEditarActionPerformed(evt);
             }
         });
-        jPanel2.add(btEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 110, 44));
+        jPanel2.add(btEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 110, 44));
 
         btExcluir.setBackground(new java.awt.Color(255, 0, 51));
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluir.png"))); // NOI18N
@@ -131,7 +145,7 @@ public class FrmHardware extends javax.swing.JFrame {
                 btExcluirActionPerformed(evt);
             }
         });
-        jPanel2.add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, 110, 44));
+        jPanel2.add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, 110, 44));
 
         btnSalvar.setBackground(new java.awt.Color(102, 255, 0));
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvarp.png"))); // NOI18N
@@ -141,7 +155,7 @@ public class FrmHardware extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 110, 44));
+        jPanel2.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 480, 110, 44));
 
         tabelaHardware.setBackground(new java.awt.Color(255, 153, 153));
         tabelaHardware.setModel(new javax.swing.table.DefaultTableModel(
@@ -149,7 +163,7 @@ public class FrmHardware extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "DESCRIÇÃO", "MODELO", "ESTADO", "DATA", "PREÇO", "CARACTERISTICAS", "CATEGORIA", "MARCA"
+                "ID", "DESCRIÇÃO", "MODELO", "ESTADO", "DATA", "PREÇO", "CATEGORIA", "MARCA", "CARACTERISTICAS"
             }
         ) {
             Class[] types = new Class [] {
@@ -176,10 +190,9 @@ public class FrmHardware extends javax.swing.JFrame {
         if (tabelaHardware.getColumnModel().getColumnCount() > 0) {
             tabelaHardware.getColumnModel().getColumn(0).setPreferredWidth(60);
             tabelaHardware.getColumnModel().getColumn(1).setPreferredWidth(220);
-            tabelaHardware.getColumnModel().getColumn(5).setCellRenderer(valorRender1);
         }
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 860, 100));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 870, 100));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -285,14 +298,24 @@ public class FrmHardware extends javax.swing.JFrame {
         jLabel2.setText("DESCRIÇÃO");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
-        txtNome.setText("a");
-        jPanel2.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 510, 30));
+        txtDesc.setText("a");
+        jPanel2.add(txtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 510, 30));
 
         txtData.setText("2000-01-01");
         jPanel2.add(txtData, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 140, 30));
 
         txtPreco.setText("1000");
         jPanel2.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 140, 30));
+
+        btNovo.setBackground(new java.awt.Color(0, 204, 255));
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/novo.png"))); // NOI18N
+        btNovo.setText("NOVO");
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 110, 44));
 
         cbxCat.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -303,7 +326,7 @@ public class FrmHardware extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jPanel2.add(cbxCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 180, 30));
+        jPanel2.add(cbxCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 140, 30));
 
         cbxMarca.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -314,10 +337,7 @@ public class FrmHardware extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jPanel2.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 120, 30));
-
-        valorRender1.setText("valorRender1");
-        jPanel2.add(valorRender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        jPanel2.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 140, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 550));
 
@@ -339,12 +359,12 @@ public class FrmHardware extends javax.swing.JFrame {
                 h.getNome(),
                 h.getModelo(),
                 h.getEstado(),
-                h.getData(), 
-                h.getPreco(), 
-                h.getCarateristica(),
+                h.getData(),
+                h.getPreco(),
                 h.getCategoria(),
-                h.getMarca()
-                
+                h.getMarca(),
+                h.getCarateristica()
+
             });
         }
     }
@@ -354,9 +374,8 @@ public class FrmHardware extends javax.swing.JFrame {
         try {
             dao = new HardwareDAO();
             Hardware h = new Hardware();
-            Categoria cat = new Categoria();
-            Marca m = new Marca();
-            h.setNome(txtNome.getText());
+
+            h.setNome(txtDesc.getText());
             h.setModelo(txtModelo.getText());
             h.setEstado((String) cbxEstado.getSelectedItem());
             h.setData(txtData.getText());
@@ -365,26 +384,31 @@ public class FrmHardware extends javax.swing.JFrame {
             h.setCategoria((Categoria) cbxCat.getSelectedItem());
             h.setMarca((Marca) cbxMarca.getSelectedItem());
             dao.create(h);
+            limpar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro:" + ex.getMessage());
         }
-     
+
         try {
             readJTable();
         } catch (SQLException ex) {
-           Logger.getLogger(FrmHardware.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmHardware.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tabelaHardwareMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaHardwareMouseClicked
         if (tabelaHardware.getSelectedRow() != -1) {
 
             txtId.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 0).toString());
-            txtNome.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 1).toString());
-            //  txtCelular.setText(tabelaUsuario.getValueAt(tabelaUsuario.getSelectedRow(), 2).toString());
-            txtModelo.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 3).toString());
-
+            txtDesc.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 1).toString());
+            txtModelo.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 2).toString());
+            cbxEstado.setSelectedItem(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 3).toString());
+            txtData.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 4).toString());
+            txtPreco.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 5).toString());
+            cbxCat.setSelectedItem(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 6).toString());
+            cbxMarca.setSelectedItem(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 7).toString());
+            txtCaracteristica.setText(tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 8).toString());
         }
 
     }//GEN-LAST:event_tabelaHardwareMouseClicked
@@ -392,24 +416,19 @@ public class FrmHardware extends javax.swing.JFrame {
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         if (tabelaHardware.getSelectedRow() != -1) {
 
-            Usuario u = new Usuario();
-            UsuarioDAO dao = null;
+            Hardware h = new Hardware();
+            HardwareDAO dao = null;
             try {
-                dao = new UsuarioDAO();
+                dao = new HardwareDAO();
             } catch (SQLException ex) {
                 Logger.getLogger(FrmHardware.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            u.setId((int) tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 0));
+            h.setIdHard((int) tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 0));
 
-            dao.delete(u);
+            dao.delete(h);
 
-            txtId.setText("");
-            txtNome.setText("");
-            txtModelo.setText("");
-            txtData.setText("");
-            //   txtCelular.setText("");
-
+            limpar();
             try {
                 readJTable();
             } catch (SQLException ex) {
@@ -423,29 +442,29 @@ public class FrmHardware extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+
         if (tabelaHardware.getSelectedRow() != -1) {
 
-            Usuario u = new Usuario();
-            UsuarioDAO dao = null;
+            Hardware h = new Hardware();
+            Marca m = new Marca();
+            Categoria c = new Categoria();
+            HardwareDAO dao = null;
             try {
-                dao = new UsuarioDAO();
+                dao = new HardwareDAO();
             } catch (SQLException ex) {
                 Logger.getLogger(FrmHardware.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            u.setNome(txtNome.getText());
-
-            //  u.setCelular(txtCelular.getText());
-            u.setEmail(txtModelo.getText());
-            u.setId((int) tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 0));
-            dao.update(u);
-
-            txtId.setText("");
-            txtNome.setText("");
-            txtModelo.setText("");
-            txtData.setText("");
-
-            //  txtCelular.setText("");
+            h.setIdHard((int) tabelaHardware.getValueAt(tabelaHardware.getSelectedRow(), 0));
+            h.setNome(txtDesc.getText());
+            h.setModelo(txtModelo.getText());
+            h.setEstado((String) cbxEstado.getSelectedItem());
+            h.setData(txtData.getText());
+            h.setPreco(Double.parseDouble(txtPreco.getText()));
+            h.setCategoria((Categoria) cbxCat.getSelectedItem());
+            h.setMarca((Marca) cbxMarca.getSelectedItem());
+            h.setCarateristica(txtCaracteristica.getText());
+            dao.update(h);
+            limpar();
             try {
                 readJTable();
             } catch (SQLException ex) {
@@ -455,24 +474,15 @@ public class FrmHardware extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btEditarActionPerformed
-
-    private void cbxMarcaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbxMarcaAncestorAdded
-        HardwareDAO hdao;
-        try {
-            hdao = new HardwareDAO();
-            List<Marca> marca = hdao.listaMarca();
-            cbxMarca.removeAll();
-            for (Marca m : marca) {
-                cbxMarca.addItem(m);
-            }
-        } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null,"Erro:"+ex.getMessage());
-        }
-
-    }//GEN-LAST:event_cbxMarcaAncestorAdded
+    private void preencherComboMarca() {
+       
+    }
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        // controlarBotoes(2);
+    }//GEN-LAST:event_btNovoActionPerformed
 
     private void cbxCatAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbxCatAncestorAdded
-       HardwareDAO hdao;
+   HardwareDAO hdao;
         try {
             hdao = new HardwareDAO();
             List<Categoria> categoria = hdao.listaCategoria();
@@ -481,10 +491,73 @@ public class FrmHardware extends javax.swing.JFrame {
                 cbxCat.addItem(c);
             }
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null,"Erro:"+ex.getMessage());
-        }
-
+            JOptionPane.showMessageDialog(null, "Erro:" + ex.getMessage());
+        }      
     }//GEN-LAST:event_cbxCatAncestorAdded
+
+    private void cbxMarcaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbxMarcaAncestorAdded
+        HardwareDAO hdao;
+        try {
+            hdao = new HardwareDAO();
+            List<Marca> marcas = hdao.listaMarca();
+            cbxMarca.removeAll();
+            for (Marca mar : marcas) {
+                cbxMarca.addItem(mar);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro:" + ex.getMessage());
+        }
+    }//GEN-LAST:event_cbxMarcaAncestorAdded
+
+    public void controlarBotoes(int op) {
+
+        switch (op) {
+            case 1:
+                //habilita botões
+                btNovo.setEnabled(true);
+                btEditar.setEnabled(false);
+                btExcluir.setEnabled(false);
+                btnSalvar.setEnabled(false);
+                //limpa caixas de textos e combos
+                txtId.setText(null);
+                txtDesc.setText(null);
+                txtModelo.setText(null);
+                cbxEstado.setSelectedIndex(0);
+                txtData.setText(null);
+                txtPreco.setText(null);
+                cbxCat.setSelectedItem("Selecione");
+                cbxMarca.setSelectedItem("Selecione");
+                txtCaracteristica.setText(null);
+                break;
+            case 2:
+                btEditar.setEnabled(false);
+                btExcluir.setEnabled(false);
+                btnSalvar.setEnabled(true);
+                btNovo.setEnabled(false);
+                txtDesc.requestFocus();
+                break;
+        }
+        /*
+        btEditar.setEnabled(false);
+        btExcluir.setEnabled(false);
+        btnSalvar.setEnabled(false);
+        btnNovo.setEnabled(false);
+
+        txtId.setText(null);
+        txtDesc.setText(null);
+        txtModelo.setText(null);
+        cbxEstado.setSelectedIndex(0);
+        txtData.setText(null);
+        txtPreco.setText(null);
+        cbxCat.setSelectedIndex(0);
+        cbxMarca.setSelectedIndex(0);
+        txtCaracteristica.setText(null);
+         */
+    }
+
+    private void preencherComboCat() {
+       
+    }
 
     /**
      * @param args the command line arguments
@@ -530,6 +603,7 @@ public class FrmHardware extends javax.swing.JFrame {
     private javax.swing.ButtonGroup SEXO;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbxCat;
@@ -561,10 +635,9 @@ public class FrmHardware extends javax.swing.JFrame {
     private javax.swing.JTable tabelaHardware;
     private javax.swing.JTextArea txtCaracteristica;
     private javax.swing.JTextField txtData;
+    private javax.swing.JTextField txtDesc;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtModelo;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
-    private br.ulbra.util.ValorRender valorRender1;
     // End of variables declaration//GEN-END:variables
 }
